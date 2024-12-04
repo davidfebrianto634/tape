@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaksi Donasi</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .form-container {
+      max-width: 500px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-container h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+    }
+    .form-group input, .form-group select, .form-group button {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .form-group button {
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .form-group button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Transaksi Donasi</h2>
+    <form id="donationForm">
+      <div class="form-group">
+        <label for="donationName">Nama Donasi:</label>
+        <input type="text" id="donationName" readonly>
+      </div>
+      <div class="form-group">
+        <label for="amount">Jumlah Donasi (Rp):</label>
+        <input type="number" id="amount" placeholder="Masukkan jumlah donasi" required>
+      </div>
+      <div class="form-group">
+        <label for="donorName">Dari Siapa:</label>
+        <input type="text" id="donorName" placeholder="Masukkan nama Anda" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Masukkan email Anda" required>
+      </div>
+      <div class="form-group">
+        <label for="paymentMethod">Metode Pembayaran:</label>
+        <select id="paymentMethod" required>
+          <option value="Transfer Bank">Transfer Bank</option>
+          <option value="E-Wallet">E-Wallet</option>
+          <option value="Kartu Kredit">Kartu Kredit</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <button type="submit">Kirim Donasi</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Ambil parameter dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const donationName = urlParams.get('donasi');
+
+    // Isi input Nama Donasi
+    document.getElementById('donationName').value = donationName;
+
+    // Form Submit Handler
+    document.getElementById('donationForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('Donasi Anda telah diterima! Terima kasih.');
+    });
+  </script>
+</body>
+</html>
