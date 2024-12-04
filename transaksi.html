@@ -45,52 +45,61 @@
   </style>
 </head>
 <body>
-  <div class="form-container">
-    <h2>Transaksi Donasi</h2>
-    <form id="donationForm">
-      <div class="form-group">
-        <label for="donationName">Nama Donasi:</label>
-        <input type="text" id="donationName" readonly>
-      </div>
-      <div class="form-group">
-        <label for="amount">Jumlah Donasi (Rp):</label>
-        <input type="number" id="amount" placeholder="Masukkan jumlah donasi" required>
-      </div>
-      <div class="form-group">
-        <label for="donorName">Dari Siapa:</label>
-        <input type="text" id="donorName" placeholder="Masukkan nama Anda" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" placeholder="Masukkan email Anda" required>
-      </div>
-      <div class="form-group">
-        <label for="paymentMethod">Metode Pembayaran:</label>
-        <select id="paymentMethod" required>
-          <option value="Transfer Bank">Transfer Bank</option>
-          <option value="E-Wallet">E-Wallet</option>
-          <option value="Kartu Kredit">Kartu Kredit</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <button type="submit">Kirim Donasi</button>
-      </div>
-    </form>
-  </div>
-
-  <script>
-    // Ambil parameter dari URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const donationName = urlParams.get('donasi');
-
-    // Isi input Nama Donasi
-    document.getElementById('donationName').value = donationName;
-
-    // Form Submit Handler
-    document.getElementById('donationForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      alert('Donasi Anda telah diterima! Terima kasih.');
-    });
-  </script>
-</body>
+    <div class="form-container">
+      <h2>Transaksi Donasi</h2>
+      <form id="donationForm">
+        <div class="form-group">
+          <label for="donationName">Nama Donasi:</label>
+          <input type="text" id="donationName" readonly>
+        </div>
+        <div class="form-group">
+          <label for="amount">Jumlah Donasi (Rp):</label>
+          <input type="number" id="amount" placeholder="Masukkan jumlah donasi" required>
+        </div>
+        <div class="form-group">
+          <label for="donorName">Dari Siapa:</label>
+          <input type="text" id="donorName" placeholder="Masukkan nama Anda" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" placeholder="Masukkan email Anda" required>
+        </div>
+        <div class="form-group">
+          <label for="paymentMethod">Metode Pembayaran:</label>
+          <select id="paymentMethod" required>
+            <option value="Transfer Bank">Transfer Bank</option>
+            <option value="E-Wallet">E-Wallet</option>
+            <option value="Kartu Kredit">Kartu Kredit</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button type="submit">Kirim Donasi</button>
+        </div>
+      </form>
+    </div>
+  
+    <script>
+      // Ambil parameter dari URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const donationName = urlParams.get('donasi');
+  
+      // Isi input Nama Donasi
+      document.getElementById('donationName').value = donationName;
+  
+      // Form Submit Handler
+      document.getElementById('donationForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+  
+        // Ambil data dari formulir
+        const name = document.getElementById('donorName').value;
+        const email = document.getElementById('email').value;
+        const amount = document.getElementById('amount').value;
+        const method = document.getElementById('paymentMethod').value;
+  
+        // Redirect ke halaman struk dengan parameter
+        const strukUrl = `struk.html?donasi=${donationName}&nama=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&amount=${amount}&method=${method}`;
+        window.location.href = strukUrl;
+      });
+    </script>
+  </body>
 </html>

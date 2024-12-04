@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Struk Donasi</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .struk-container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .struk-container h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #333;
+    }
+    .struk-container p {
+      margin: 5px 0;
+      color: #555;
+    }
+    .struk-container .highlight {
+      font-weight: bold;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="struk-container">
+    <h2>Struk Donasi</h2>
+    <p><strong>ID Transaksi:</strong> <span id="transactionId"></span></p>
+    <p><strong>Nama Donasi:</strong> <span id="donationName"></span></p>
+    <p><strong>Nama Pemberi:</strong> <span id="donorName"></span></p>
+    <p><strong>Email:</strong> <span id="email"></span></p>
+    <p><strong>Jumlah Donasi:</strong> Rp<span id="amount"></span></p>
+    <p><strong>Fee (2%):</strong> Rp<span id="fee"></span></p>
+    <p><strong>Total:</strong> Rp<span id="total"></span></p>
+    <p><strong>Metode Pembayaran:</strong> <span id="paymentMethod"></span></p>
+  </div>
+
+  <script>
+    // Ambil parameter dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const donationName = urlParams.get('donasi');
+    const donorName = urlParams.get('nama');
+    const email = urlParams.get('email');
+    const amount = parseFloat(urlParams.get('amount'));
+    const method = urlParams.get('method');
+
+    // Generate ID Transaksi
+    const transactionId = 'TRX' + Math.floor(Math.random() * 1000000);
+
+    // Hitung Fee dan Total
+    const fee = Math.round(amount * 0.02);
+    const total = amount + fee;
+
+    // Tampilkan Data di Halaman
+    document.getElementById('transactionId').textContent = transactionId;
+    document.getElementById('donationName').textContent = donationName;
+    document.getElementById('donorName').textContent = donorName;
+    document.getElementById('email').textContent = email;
+    document.getElementById('amount').textContent = amount.toLocaleString();
+    document.getElementById('fee').textContent = fee.toLocaleString();
+    document.getElementById('total').textContent = total.toLocaleString();
+    document.getElementById('paymentMethod').textContent = method;
+  </script>
+</body>
+</html>
